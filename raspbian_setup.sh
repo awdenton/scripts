@@ -1,14 +1,16 @@
 mkdir ~/repos
 
+sudo dpkg-reconfigure locales
+
 # update apt and all preinstalled packages
 
-sudo apt update 
-sudo apt upgrade -y 
-sudo apt install -y autoconf automake coreutils curl g++ gcc git gpg inotify-tools libncurses5-dev libssl-dev make nginx postgresql wget 
+sudo apt update
+sudo apt upgrade -y
+sudo apt install -y autoconf automake coreutils curl g++ gcc git gpg inotify-tools libncurses5-dev libssl-dev make nginx postgresql wget
 sudo apt autoremove -y
 
 # git
-
+sudo apt install -y git
 git config --global user.name "awdenton"
 git config --global user.email "awdenton@gmail.com"
 
@@ -22,9 +24,11 @@ ssh-keygen -t ed25519 -C "awdenton@gmail.com"
 # and then add the .pub file to github
 
 # asdf
+# NOTE: Should already have curl and git installed at this point, but leaving here as 
+#   a reminder they are needed
+# sudo apt install -y curl git --
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.1
 
-# add the following th .bashrc
 echo '' >> ~/.bashrc
 echo '. "$HOME/.asdf/asdf.sh"' >> ~/.bashrc
 echo '. "$HOME/.asdf/completions/asdf.bash"' >> ~/.bashrc
@@ -42,18 +46,14 @@ asdf plugin add elixir
 asdf install elixir 1.14.3-otp-25
 asdf global elixir 1.14.3-otp-25
 
+# postgresql
+
+sudo apt install -y postgresql
+
+# elixir phoenix
+
+sudo apt install -y inotify-tools
 # elixir phoenix
 
 mix local.hex
 mix archive.install hex phx_new
-
-
-# vs code
-
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-rm -f packages.microsoft.gpg
-sudo apt install -y apt-transport-https
-sudo apt update
-sudo apt install -y code
