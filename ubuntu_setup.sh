@@ -1,11 +1,12 @@
-mkdir ~/repos
+# This script will guide you through setting up an 
+# environment capable of hosting an Elixir+Phoenix app 
+# with nginx and postgresql
+# Targeting: Ubuntu 22.04 LTS Desktop
+# Last Updated: 01/25/2023
 
 # update apt and all preinstalled packages
 
-sudo apt update 
-sudo apt upgrade -y 
-sudo apt install -y autoconf automake coreutils curl g++ gcc git gpg inotify-tools libncurses5-dev libssl-dev make nginx postgresql wget 
-sudo apt autoremove -y
+sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
 
 # git
 
