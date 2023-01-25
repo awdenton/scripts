@@ -9,6 +9,7 @@ sudo apt autoremove -y
 
 # git
 
+sudo apt install -y git
 git config --global user.name "awdenton"
 git config --global user.email "awdenton@gmail.com"
 
@@ -22,6 +23,7 @@ ssh-keygen -t ed25519 -C "awdenton@gmail.com"
 # and then add the .pub file to github
 
 # asdf
+sudo apt install -y curl git
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.1
 
 # add the following th .bashrc
@@ -42,8 +44,13 @@ asdf plugin add elixir
 asdf install elixir 1.14.3-otp-25
 asdf global elixir 1.14.3-otp-25
 
+# postgresql
+
+sudo apt install -y postgresql
+
 # elixir phoenix
 
+sudo apt install -y inotify-tools
 mix local.hex
 mix archive.install hex phx_new
 
